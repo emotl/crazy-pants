@@ -1,27 +1,37 @@
  Volume in drive C has no label.
- Volume Serial Number is 3EB4-511E
+ Volume Serial Number is EA1D-A40C
 
- Directory of C:\Users\Kirbinator\Documents\gameExperiments\RingsOfMadness\SFML-2.1\lib
+ Directory of C:\Users\Kirby\Documents\gameDev\crazy-pants\GameApp\SFML-2.1\lib
 
-01/03/2014  07:37 PM    <DIR>          .
-01/03/2014  07:37 PM    <DIR>          ..
-01/03/2014  07:37 PM                 0 list.txt
-01/03/2014  12:38 AM         3,372,884 sfml-audio-s-d.lib
-01/03/2014  12:29 AM         1,412,846 sfml-audio-s.lib
-01/03/2014  12:40 AM         2,695,384 sfml-audio.lib
-01/03/2014  12:39 AM         6,772,484 sfml-graphics-s-d.lib
-01/03/2014  12:30 AM         2,756,634 sfml-graphics-s.lib
-01/03/2014  12:40 AM         5,178,894 sfml-graphics.lib
-01/03/2014  12:38 AM            25,160 sfml-main-d.lib
-01/03/2014  12:29 AM             1,138 sfml-main.lib
-01/03/2014  12:39 AM         5,135,018 sfml-network-s-d.lib
-01/03/2014  12:29 AM         2,343,552 sfml-network-s.lib
-01/03/2014  12:40 AM         4,211,330 sfml-network.lib
-01/03/2014  12:39 AM         1,387,184 sfml-system-s-d.lib
-01/03/2014  12:30 AM           526,668 sfml-system-s.lib
-01/03/2014  12:40 AM         1,160,174 sfml-system.lib
-01/03/2014  12:38 AM         2,930,624 sfml-window-s-d.lib
-01/03/2014  12:30 AM         1,244,722 sfml-window-s.lib
-01/03/2014  12:40 AM         2,345,706 sfml-window.lib
-              18 File(s)     43,500,402 bytes
-               2 Dir(s)  114,984,550,400 bytes free
+01/04/2014  08:19 PM    <DIR>          .
+01/04/2014  08:19 PM    <DIR>          ..
+01/04/2014  08:19 PM           896,570 freetype.lib
+01/04/2014  08:19 PM         1,242,132 glew.lib
+01/04/2014  08:19 PM           354,790 jpeg.lib
+01/04/2014  08:44 PM                 0 list.txt
+01/04/2014  08:19 PM            31,478 openal32.lib
+01/04/2014  07:27 PM            36,574 sfml-audio-d.lib
+01/04/2014  08:19 PM         3,372,884 sfml-audio-s-d.lib
+01/04/2014  08:19 PM         1,412,846 sfml-audio-s.lib
+01/04/2014  08:19 PM         2,695,384 sfml-audio.lib
+01/04/2014  07:27 PM           117,660 sfml-graphics-d.lib
+01/04/2014  08:19 PM         6,772,484 sfml-graphics-s-d.lib
+01/04/2014  08:19 PM         2,756,634 sfml-graphics-s.lib
+01/04/2014  08:19 PM         5,178,894 sfml-graphics.lib
+01/04/2014  08:19 PM            25,160 sfml-main-d.lib
+01/04/2014  08:19 PM             1,138 sfml-main.lib
+01/04/2014  07:27 PM            65,936 sfml-network-d.lib
+01/04/2014  08:19 PM         5,135,018 sfml-network-s-d.lib
+01/04/2014  08:19 PM         2,343,552 sfml-network-s.lib
+01/04/2014  08:19 PM         4,211,330 sfml-network.lib
+01/04/2014  07:27 PM            30,122 sfml-system-d.lib
+01/04/2014  08:19 PM         1,387,184 sfml-system-s-d.lib
+01/04/2014  08:19 PM           526,668 sfml-system-s.lib
+01/04/2014  08:19 PM         1,160,174 sfml-system.lib
+01/04/2014  07:27 PM            22,780 sfml-window-d.lib
+01/04/2014  08:19 PM         2,930,624 sfml-window-s-d.lib
+01/04/2014  08:19 PM         1,244,722 sfml-window-s.lib
+01/04/2014  08:19 PM         2,345,706 sfml-window.lib
+01/04/2014  08:19 PM             8,596 sndfile.lib
+              28 File(s)     46,307,040 bytes
+               2 Dir(s)  88,500,224,000 bytes free
