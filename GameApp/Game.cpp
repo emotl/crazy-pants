@@ -1,17 +1,17 @@
 #include "Game.h"
 
-void Game::Start( void ) {
+void Game::Start( sf::RenderWindow* targetWindow ) {
 	if(_gameState != Uninitialized)
 		return;	// Throw an error would be correct, but returning closes the game anyways.
 
-	_mainWindow.create( sf::VideoMode(1024,768,32), "Pang!" );
+	targetWindow->create(sf::VideoMode(1024, 768, 32), "Pang!");
 	_gameState = Game::Playing;
 
 	while( !IsExiting() ){
-		GameLoop();
+		GameLoop(targetWindow);
 	}
 
-	_mainWindow.close();
+	targetWindow->close();
 }
 
 
@@ -23,16 +23,16 @@ bool Game::IsExiting() {
 }
 
 
-void Game::GameLoop() {
+void Game::GameLoop(sf::RenderWindow* targetWindow) {
 	sf::Event currentEvent;
 
-	while( _mainWindow.pollEvent(currentEvent) ) {
+	while (targetWindow->pollEvent(currentEvent)) {
 		
 		switch( _gameState ) {
 		
 			case Game::Playing: {
-				_mainWindow.clear(sf::Color(255,0,0));
-				_mainWindow.display();
+				targetWindow->clear(sf::Color(255, 0, 0));
+				targetWindow->display();
 
 				if( currentEvent.type == sf::Event::Closed){
 					_gameState = Game::Exiting;
@@ -43,5 +43,3 @@ void Game::GameLoop() {
 	}
 }
 
-Game::GameState Game::_gameState = Game::Uninitialized;
-sf::RenderWindow Game::_mainWindow;
