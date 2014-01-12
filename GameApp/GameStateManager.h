@@ -1,3 +1,8 @@
+//GameStateManager.h
+//GameStateManager keeps and manages GameStates.  gameLoop and Drawloop should be invoked somewhere near the main of 
+//your program
+//deltaTime is the amount of time passed since the last execution of the game loop.
+
 #pragma once
 
 #include <stack>

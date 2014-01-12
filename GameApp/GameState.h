@@ -1,3 +1,7 @@
+//GameState.h
+//Game State that can be stacked on other game states.  override to make your own game loops
+//slots into a GameStateManager
+
 #pragma once
 
 #include "stdafx.h"
