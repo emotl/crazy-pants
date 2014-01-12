@@ -11,13 +11,14 @@ class GameState
 public:
 	virtual ~GameState(void);
 
-	//get GameState Going
-	virtual void gameLoop(sf::Time deltaTime);
+	//game loop
+	virtual void gameLoop(sf::Time deltaTime) = 0;
 	
 	//startInformation
-	virtual void initialize(sf::SoundBuffer soundTarget);
+	virtual void initialize(sf::SoundBuffer soundTarget) = 0;
 
-	virtual void drawLoop(sf::RenderWindow* drawTarget, sf::Time deltaTime);
+	//draw loop
+	virtual void drawLoop(sf::RenderWindow* drawTarget, sf::Time deltaTime) = 0;
 
 	void setReadyToDie();
 
