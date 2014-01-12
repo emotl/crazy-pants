@@ -1,4 +1,6 @@
 #pragma once
+#include "GameStateManager.h"
+#include "ExampleGameLoop.h"
 
 class Game {
 

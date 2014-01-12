@@ -15,7 +15,7 @@ public:
 	virtual void gameLoop(sf::Time deltaTime) = 0;
 	
 	//startInformation
-	virtual void initialize(sf::SoundBuffer soundTarget) = 0;
+	virtual void initialize(sf::SoundBuffer* soundTarget) = 0;
 
 	//draw loop
 	virtual void drawLoop(sf::RenderWindow* drawTarget, sf::Time deltaTime) = 0;
