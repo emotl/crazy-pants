@@ -4,6 +4,7 @@
 
 GameState::GameState(void)
 {
+	killMe = false;
 }
 
 
@@ -20,6 +21,16 @@ void GameState::initialize(sf::SoundBuffer soundTarget)
 }
 
 
-void GameState::drawLoop(sf::RenderWindow* drawTarget)
+void GameState::drawLoop(sf::RenderWindow* drawTarget, sf::Time deltaTime)
 {
+}
+
+bool GameState::wantToPop()
+{
+	return killMe;
+}
+
+void GameState::setReadyToDie()
+{
+	killMe = true;
 }
