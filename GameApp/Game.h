@@ -1,4 +1,6 @@
 #pragma once
+#include "GameStateManager.h"
+#include "ExampleGameLoop.h"
 
 class Game {
 
@@ -20,4 +22,5 @@ private:
 
 	static GameState _gameState;
 	static sf::RenderWindow _mainWindow;
+public:
 };

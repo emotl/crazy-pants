@@ -46,3 +46,5 @@ void Game::GameLoop() {
 
 Game::GameState Game::_gameState = Game::Uninitialized;
 sf::RenderWindow Game::_mainWindow;
+
+
