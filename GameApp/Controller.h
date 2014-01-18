@@ -7,9 +7,7 @@ class Controller
 public:
 	virtual ~Controller(void);
 
-	static Controller* getInstance(void);
-
-
+	virtual void update(sf::Time deltaTime) = 0;
 
 protected:
 	Controller(void);

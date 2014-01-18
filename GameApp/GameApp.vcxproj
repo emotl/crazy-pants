@@ -100,6 +100,7 @@ xcopy $(SolutionDir)Assets $(SolutionDir)\$(Configuration)\Assets</Command>
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="DrawCompoent.h" />
     <ClInclude Include="ExampleGameLoop.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -111,6 +112,7 @@ xcopy $(SolutionDir)Assets $(SolutionDir)\$(Configuration)\Assets</Command>
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="DrawCompoent.cpp" />
     <ClCompile Include="ExampleGameLoop.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameApp.cpp" />
