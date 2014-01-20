@@ -11,7 +11,7 @@ class DrawController :
 {
 public:
 
-	const int magicNum = 1;
+	static const int magicNum = 1;
 
 	DrawController(void);
 	virtual ~DrawController(void);

@@ -12,30 +12,32 @@ DrawComponent::~DrawComponent(void)
 }
 
 //as a user, call this to connect to the Controller
-void registerToController()
+void DrawComponent::registerToController()
 {}
 
 //basic "do work" function
-void update(sf::Time deltaTime)
+void DrawComponent::update(sf::Time deltaTime)
 {}
 
-sf::Sprite* getSprite()
-{}
+sf::Sprite* DrawComponent::getSprite()
+{
+	return NULL;
+}
 	
-void teleport(float x, float y)
+void DrawComponent::teleport(float x, float y)
 {}
 
-void rotateTo(float degrees)
+void DrawComponent::rotateTo(float degrees)
 {}
 
-void moveAtSpeedPerSecond(float x, float y)
+void DrawComponent::moveAtSpeedPerSecond(float x, float y)
 {}
 
-void moveAtFacing(float speed)
+void DrawComponent::moveAtFacing(float speed)
 {}
 
-void rotateAtSpeedSecond(float degreesPerSecond)
+void DrawComponent::rotateAtSpeedSecond(float degreesPerSecond)
 {}
 
-void matchTransform(const sf::Transformable& reference)
+void DrawComponent::matchTransform(const sf::Transformable& reference)
 {}

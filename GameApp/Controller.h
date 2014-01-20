@@ -2,6 +2,7 @@
 //Components auto-finding the correct Controller
 
 #pragma once
+class Component;
 class Controller
 {
 public:

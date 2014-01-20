@@ -42,9 +42,7 @@ Controller* ComponentEntityBridge::findParent(Component* child)
 
 			return *iter;
 		}
-		else
-		{
-			return NULL;
-		}
+
 	}
+	return NULL;
 }

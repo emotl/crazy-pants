@@ -8,7 +8,7 @@ class DrawComponent :
 {
 public:
 
-	const int magicNum = 1;
+	static const int magicNum = 1;
 
 	DrawComponent(void);
 	~DrawComponent(void);
