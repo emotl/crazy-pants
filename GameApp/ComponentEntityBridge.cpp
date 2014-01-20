@@ -24,7 +24,27 @@ ComponentEntityBridge* ComponentEntityBridge::getInstance()
 
 
 void ComponentEntityBridge::addParent(Controller* master)
-{}
+{
+	parents.push_front(master);
+}
 
 Controller* ComponentEntityBridge::findParent(Component* child)
-{}
+{
+	list<Controller*>::iterator iter;
+	
+	int magicNumber = child->magicNumber();
+
+	for(iter = parents.begin(); iter != parents.end(); iter++)
+	{
+		if(magicNumber == (*iter)->magicNumber())
+		{
+			(*iter)->takePupil(child);
+
+			return *iter;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+}

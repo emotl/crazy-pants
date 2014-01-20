@@ -1,7 +1,11 @@
 #pragma once
 
+#include <list>
+
 #include "Component.h"
 #include "Controller.h"
+
+using namespace std;
 
 class ComponentEntityBridge
 {
@@ -9,10 +13,16 @@ public:
 
 	~ComponentEntityBridge(void);
 
-	ComponentEntityBridge* getInstance();
-	void giveComponentToController(Component* pupil);
+	static ComponentEntityBridge* getInstance();
+	void addParent(Controller* master);
+	Controller* findParent(Component* child);
 
 private:
 	ComponentEntityBridge(void);
+
+	static ComponentEntityBridge* instance;
+
+	list<Controller*> parents;
 };
 
+ComponentEntityBridge* ComponentEntityBridge::instance = NULL;

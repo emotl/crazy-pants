@@ -13,7 +13,7 @@ public:
 	//basic "do work" function
 	virtual void update(sf::Time deltaTime) = 0;
 
-	//for matching to controller.  Should 
+	//for matching to controller.  controllers and components magic numbers should match.
 	virtual int magicNumber() = 0;
 
 protected:

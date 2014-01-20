@@ -7,6 +7,9 @@ class DrawComponent :
 	public Component
 {
 public:
+
+	const int magicNum = 1;
+
 	DrawComponent(void);
 	~DrawComponent(void);
 	sf::Texture* sourceTexture;
@@ -27,6 +30,10 @@ public:
 	void rotateAtSpeedSecond(float degreesPerSecond);
 
 	void matchTransform(const sf::Transformable& reference);
+
+	
+	int magicNumber() override
+	{return magicNum;}
 
 private:
 	sf::Sprite* drawSprite;
