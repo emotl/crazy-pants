@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ComponentEntityBridge.h"
 
+ComponentEntityBridge* ComponentEntityBridge::instance = NULL;
 
 ComponentEntityBridge::ComponentEntityBridge(void):parents()
 {

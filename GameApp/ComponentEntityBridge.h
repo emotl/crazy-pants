@@ -25,4 +25,4 @@ private:
 	list<Controller*> parents;
 };
 
-ComponentEntityBridge* ComponentEntityBridge::instance = NULL;
+

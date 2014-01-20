@@ -3,6 +3,10 @@
 
 #include "stdafx.h"
 #include "Game.h"
+#include "ComponentEntityBridge.h"
+#include "DrawController.h"
+
+void mapComponents();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -17,6 +21,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	firstGameLoop->initialize(&music);
 
 	gamestateManager.pushState(firstGameLoop);
+
+	mapComponents();
 
 	while(screen.isOpen())
 	{
@@ -38,5 +44,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Game::Start();
 
 	return 0;
+}
+
+
+void mapComponents()
+{
+	ComponentEntityBridge* mapper = ComponentEntityBridge::getInstance();
+
+	mapper->addParent(DrawController::getInstance());
 }
 
