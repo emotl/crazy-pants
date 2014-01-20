@@ -9,6 +9,10 @@ public:
 
 	virtual void update(sf::Time deltaTime) = 0;
 
+	virtual void takePupil(Component* pupil) = 0;
+
+	virtual int magicNumber() = 0;
+
 protected:
 	Controller(void);
 };

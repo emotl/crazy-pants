@@ -12,7 +12,3 @@ Controller::~Controller(void)
 }
 
 
-Controller* Controller::getInstance(void)
-{
-	return NULL;
-}

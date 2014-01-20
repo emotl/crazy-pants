@@ -14,7 +14,7 @@ using namespace std;
 class GameStateManager
 {
 public:
-	GameStateManager(void);
+
 	~GameStateManager(void);
 	void pushState(GameState* newState);
 	void popState(void);
@@ -22,6 +22,7 @@ public:
 	void drawLoop(sf::RenderWindow* targetDrawSurface, sf::Time deltaTime);
 
 private:
+	GameStateManager(void);
 	stack<GameState*> stateStack;
 
 	void deleteTopState();
