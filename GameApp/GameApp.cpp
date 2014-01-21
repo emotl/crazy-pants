@@ -6,7 +6,7 @@
 #include "ComponentEntityBridge.h"
 #include "DrawController.h"
 
-void mapComponents();
+void mapComponents(sf::RenderWindow &window);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -22,7 +22,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	gamestateManager.pushState(firstGameLoop);
 
-	mapComponents();
+	mapComponents(screen);
 
 	while(screen.isOpen())
 	{
@@ -47,10 +47,10 @@ int _tmain(int argc, _TCHAR* argv[])
 }
 
 
-void mapComponents()
+void mapComponents(sf::RenderWindow &window)
 {
 	ComponentEntityBridge* mapper = ComponentEntityBridge::getInstance();
 
-	mapper->addParent(DrawController::getInstance());
+	mapper->addParent(DrawController::getInstance(&window));
 }
 

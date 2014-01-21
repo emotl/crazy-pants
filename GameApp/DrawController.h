@@ -13,7 +13,7 @@ public:
 
 	static const int magicNum = 1;
 
-	static DrawController* getInstance();
+	static DrawController* getInstance(sf::RenderWindow* target);
 
 	virtual ~DrawController(void);
 	void takePupil(Component* pupil) override;
@@ -23,8 +23,10 @@ public:
 	{return magicNum;}
 
 private:
-	DrawController(void);
+	DrawController(sf::RenderWindow* target);
 	list<DrawComponent*> registeredComponents;
+
+	sf::RenderWindow* targetWindow;
 
 	static DrawController* instance;
 };

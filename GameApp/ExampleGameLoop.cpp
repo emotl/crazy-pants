@@ -90,6 +90,5 @@ void ExampleGameLoop::drawLoop(sf::RenderWindow* drawTarget, sf::Time deltaTime)
 	fishSprite.move(pos.getPosition());
 	fishSprite.rotate(pos.getRotation());
 	fishSprite.setScale(.5,.5);
-	drawTarget->draw(fishSprite);
-	drawTarget->display();
+
 }

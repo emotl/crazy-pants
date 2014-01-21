@@ -1,5 +1,8 @@
 #pragma once
 #include "component.h"
+#include "ComponentEntityBridge.h"
+
+#define PI 3.14159265
 
 class DrawController;
 
@@ -10,8 +13,11 @@ public:
 
 	static const int magicNum = 1;
 
+	DrawComponent(sf::Texture* texture);
+	DrawComponent(const DrawComponent& original);
 	DrawComponent(void);
 	~DrawComponent(void);
+
 	sf::Texture* sourceTexture;
 
 	//as a user, call this to connect to the Controller
@@ -21,6 +27,7 @@ public:
 	void update(sf::Time deltaTime) override;
 
 	sf::Sprite* getSprite();
+	void setTexture(sf::Texture* texture);
 	
 	void teleport(float x, float y);
 	void rotateTo(float degrees);
@@ -30,14 +37,15 @@ public:
 	void rotateAtSpeedSecond(float degreesPerSecond);
 
 	void matchTransform(const sf::Transformable& reference);
-
 	
 	int magicNumber() override
 	{return magicNum;}
 
 private:
 	sf::Sprite* drawSprite;
-	sf::Transformable movementVector;
+	sf::Vector2f linearMovement;
+	float angle;
+	float angleChange;
 
 };
 
