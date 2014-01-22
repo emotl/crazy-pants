@@ -5,15 +5,21 @@
 DrawComponent::DrawComponent(void)
 {
 	drawSprite = new sf::Sprite();
-	angle = 0;
-	angleChange = 0;
+	setupBaseData();
 }
 
 DrawComponent::DrawComponent(sf::Texture* texture)
 {
 	drawSprite = new sf::Sprite(*texture);
+	setupBaseData();
+}
+
+void DrawComponent::setupBaseData()
+{
 	angle = 0;
 	angleChange = 0;
+	linearMovement.x = 0;
+	linearMovement.y = 0;
 }
 
 DrawComponent::~DrawComponent(void)
@@ -35,11 +41,17 @@ void DrawComponent::registerToController()
 
 //basic "do work" function, called by controller
 void DrawComponent::update(sf::Time deltaTime)
-{}
+{
+	float speedPerFrame = ((float)deltaTime.asMicroseconds())/100000.0;
+
+	drawSprite->setRotation(angleChange * speedPerFrame);
+
+	drawSprite->setPosition(linearMovement.x *speedPerFrame, linearMovement.y * speedPerFrame);
+}
 
 sf::Sprite* DrawComponent::getSprite()
 {
-	return NULL;
+	return drawSprite;
 }
 
 void DrawComponent::setTexture(sf::Texture* texture)

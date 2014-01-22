@@ -47,5 +47,7 @@ private:
 	float angle;
 	float angleChange;
 
+	void setupBaseData();
+
 };
 
