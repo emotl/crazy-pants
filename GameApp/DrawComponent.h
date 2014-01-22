@@ -20,9 +20,6 @@ public:
 
 	sf::Texture* sourceTexture;
 
-	//as a user, call this to connect to the Controller
-	void registerToController() override;
-
 	//basic "do work" function
 	void update(sf::Time deltaTime) override;
 
@@ -37,6 +34,12 @@ public:
 	void rotateAtSpeedSecond(float degreesPerSecond);
 
 	void matchTransform(const sf::Transformable& reference);
+
+	void setOrigin(float x, float y);
+	void setScale(float x, float y);
+
+	sf::Vector2f getPosition();
+	float getRotation();
 	
 	int magicNumber() override
 	{return magicNum;}
@@ -48,6 +51,9 @@ private:
 	float angleChange;
 
 	void setupBaseData();
+
+	void registerToController() override;
+
 
 };
 

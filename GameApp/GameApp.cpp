@@ -15,14 +15,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	sf::Clock clock;
 	screen.create( sf::VideoMode(1024,768,32), "Test Game Loop" );
 
+	mapComponents(screen);
+
 	GameStateManager gamestateManager;
-	
 	ExampleGameLoop* firstGameLoop = new ExampleGameLoop();
 	firstGameLoop->initialize(&music);
-
 	gamestateManager.pushState(firstGameLoop);
 
-	mapComponents(screen);
 
 	while(screen.isOpen())
 	{

@@ -104,6 +104,7 @@ xcopy $(SolutionDir)Assets $(SolutionDir)\$(Configuration)\Assets</Command>
     <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="DrawController.h" />
     <ClInclude Include="ExampleGameLoop.h" />
+    <ClInclude Include="Fish.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
@@ -118,6 +119,7 @@ xcopy $(SolutionDir)Assets $(SolutionDir)\$(Configuration)\Assets</Command>
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="DrawController.cpp" />
     <ClCompile Include="ExampleGameLoop.cpp" />
+    <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GameObject.cpp" />

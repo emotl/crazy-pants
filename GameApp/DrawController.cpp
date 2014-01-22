@@ -5,6 +5,7 @@ DrawController* DrawController::instance = NULL;
 
 DrawController::DrawController(sf::RenderWindow* target):registeredComponents()
 {
+	targetWindow = target;
 }
 
 

@@ -6,12 +6,14 @@ DrawComponent::DrawComponent(void)
 {
 	drawSprite = new sf::Sprite();
 	setupBaseData();
+	registerToController();
 }
 
 DrawComponent::DrawComponent(sf::Texture* texture)
 {
 	drawSprite = new sf::Sprite(*texture);
 	setupBaseData();
+	registerToController();
 }
 
 void DrawComponent::setupBaseData()
@@ -94,4 +96,24 @@ void DrawComponent::matchTransform(const sf::Transformable& reference)
 {
 	drawSprite->setPosition(reference.getPosition());
 	drawSprite->setRotation(reference.getRotation());
+}
+
+void DrawComponent::setOrigin(float x, float y)
+{
+	drawSprite->setOrigin(x,y);
+}
+
+sf::Vector2f DrawComponent::getPosition()
+{
+	return drawSprite->getPosition();
+}
+
+float DrawComponent::getRotation()
+{
+	return drawSprite->getRotation();
+}
+
+void DrawComponent::setScale(float x, float y)
+{
+	drawSprite->setScale(x,y);
 }
