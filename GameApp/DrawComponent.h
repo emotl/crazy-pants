@@ -47,6 +47,7 @@ public:
 private:
 	sf::Sprite* drawSprite;
 	sf::Vector2f linearMovement;
+	float angularMovement;
 	float angle;
 	float angleChange;
 

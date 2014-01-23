@@ -22,6 +22,7 @@ void DrawComponent::setupBaseData()
 	angleChange = 0;
 	linearMovement.x = 0;
 	linearMovement.y = 0;
+	angularMovement = 0;
 }
 
 DrawComponent::~DrawComponent(void)
@@ -44,11 +45,22 @@ void DrawComponent::registerToController()
 //basic "do work" function, called by controller
 void DrawComponent::update(sf::Time deltaTime)
 {
-	float speedPerFrame = ((float)deltaTime.asMicroseconds())/100000.0;
+	float speedPerFrame = ((float)deltaTime.asMicroseconds())/1000000.0;
 
-	drawSprite->setRotation(angleChange * speedPerFrame);
+	float cosValue = cos(angle * (PI/180.0));
+	float sinValue = sin(angle * (PI/180.0));
+	if(angularMovement > .01)
+	{
+		linearMovement.x = angularMovement * cosValue;
+		linearMovement.y = angularMovement * sinValue;
+	}
 
-	drawSprite->setPosition(linearMovement.x *speedPerFrame, linearMovement.y * speedPerFrame);
+	angle += angleChange * speedPerFrame;
+	drawSprite->setRotation(angle);
+
+	float xMov = drawSprite->getPosition().x + linearMovement.x * speedPerFrame;
+	float yMov = drawSprite->getPosition().y + linearMovement.y * speedPerFrame;
+	drawSprite->setPosition(xMov, yMov);
 }
 
 sf::Sprite* DrawComponent::getSprite()
@@ -74,6 +86,7 @@ void DrawComponent::rotateTo(float degrees)
 //sets x/y movement componants.  Overrides moveAtFacing()
 void DrawComponent::moveAtSpeedPerSecond(float x, float y)
 {
+	angularMovement = 0;
 	linearMovement.x = x;
 	linearMovement.y = y;
 }
@@ -81,10 +94,7 @@ void DrawComponent::moveAtSpeedPerSecond(float x, float y)
 //sets speed to move at with facing.  Set facing with rotateTo or rotateAtSpeedSecond, overrides moveAtSpeedPerSecond
 void DrawComponent::moveAtFacing(float speed)
 {
-	float cosValue = cos(angle * (PI/180.0));
-	float sinValue = sin(angle * (PI/180.0));
-	linearMovement.x = speed * cosValue;
-	linearMovement.y = speed * sinValue;
+	angularMovement = speed;
 }
 
 void DrawComponent::rotateAtSpeedSecond(float degreesPerSecond)

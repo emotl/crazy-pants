@@ -25,12 +25,12 @@ Fish::Fish(float x, float y, float heading)
 
 void Fish::SetSpeed(float speed)
 {
-	drawComp->rotateAtSpeedSecond(speed);
+	drawComp->moveAtFacing(speed);
 }
 
 void Fish::SetTurnSpeed(float speed)
 {
-	drawComp->moveAtFacing(speed);
+	drawComp->rotateAtSpeedSecond(speed);
 }
 
 void Fish::SetLocation(float x, float y, float heading)
@@ -43,7 +43,7 @@ void Fish::initialize()
 {
 	addDrawComponent();
 
-	SetSpeed(.07);
+	SetSpeed(75);
 	secondsToChangeDir = 2;
 	SetTurnSpeed(8);
 	RotationSpeed = 8;
@@ -67,7 +67,7 @@ void Fish::addDrawComponent()
 	parts.push_front(drawComp);
 
 	drawComp->setOrigin(fishTexture->getSize().x/2, fishTexture->getSize().y/2);
-	drawComp->setScale(.5,.5);
+	drawComp->setScale(.75,.75);
 }
 
 void Fish::update(sf::Time deltaTime)
@@ -78,7 +78,7 @@ void Fish::update(sf::Time deltaTime)
 		clock.restart();
 		secondsToChangeDir = rand() % 5;
 		RotationSpeed *= -1;
-		SetSpeed(RotationSpeed);
+		SetTurnSpeed(RotationSpeed);
 	}
 
 		
