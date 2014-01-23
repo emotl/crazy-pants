@@ -3,6 +3,10 @@
 
 #include "stdafx.h"
 #include "Game.h"
+#include "ComponentEntityBridge.h"
+#include "DrawController.h"
+
+void mapComponents(sf::RenderWindow &window);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -11,12 +15,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	sf::Clock clock;
 	screen.create( sf::VideoMode(1024,768,32), "Test Game Loop" );
 
+	mapComponents(screen);
+
 	GameStateManager gamestateManager;
-	
 	ExampleGameLoop* firstGameLoop = new ExampleGameLoop();
 	firstGameLoop->initialize(&music);
-
 	gamestateManager.pushState(firstGameLoop);
+
 
 	while(screen.isOpen())
 	{
@@ -38,5 +43,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Game::Start();
 
 	return 0;
+}
+
+
+void mapComponents(sf::RenderWindow &window)
+{
+	ComponentEntityBridge* mapper = ComponentEntityBridge::getInstance();
+
+	mapper->addParent(DrawController::getInstance(&window));
 }
 

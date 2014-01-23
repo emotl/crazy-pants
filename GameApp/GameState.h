@@ -29,7 +29,6 @@ protected:
 	sf::RenderWindow* targetWindow;
 	sf::SoundBuffer* targetAudioPlayer;
 	
-	//include in parameter list when inheriting
 	GameState(void);
 
 private:

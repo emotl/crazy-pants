@@ -1,5 +1,7 @@
 #pragma once
 #include "GameState.h"
+#include "DrawController.h"
+#include "Fish.h"
 #include <math.h>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
@@ -22,21 +24,10 @@ public:
 	void drawLoop(sf::RenderWindow* drawTarget, sf::Time deltaTime);
 
 private:
-	//fish position
-	sf::Transformable pos;
-	sf::Texture fishTexture;
-	sf::Sprite fishSprite;
-
-	float secondsToChangeDir;
-	float swimSpeed;
-	float RotationSpeed;
-
-	float rightBoundry;
-	float downBoundry;
-
-	bool flipped;
 
 	sf::Clock clock;
+	Fish* fish[10];
+	DrawController* Drawer;
 
 };
 
