@@ -15,7 +15,14 @@ DrawController::~DrawController(void)
 
 void DrawController::takePupil(Component* pupil) 
 {
-	registeredComponents.push_front((DrawComponent*)pupil);
+	DrawComponent* temp = (DrawComponent*)pupil;
+
+	if(temp->getZDepth() <= 0)
+		temp->setZdepth(1);
+	if(temp->getZDepth() >= 11)
+		temp->setZdepth(10);
+
+	registeredComponents[temp->getZDepth()].push_front(temp);
 }
 
 void DrawController::update(sf::Time deltaTime)
@@ -23,24 +30,28 @@ void DrawController::update(sf::Time deltaTime)
 	list<DrawComponent*>::iterator iter;
 	DrawComponent* temp;
 
-
-	for(iter = registeredComponents.begin(); iter != registeredComponents.end(); iter++)
+	for (int i = 1; i <= 10; i++)
 	{
-		temp = *iter;
+		for(iter = registeredComponents[i].begin(); iter != registeredComponents[i].end(); iter++)
+		{
+			temp = *iter;
 
-		//do work
-		temp->update(deltaTime);
+			//do work
+			temp->update(deltaTime);
+		}
 	}
 
 	//all actual drawing happens here
-
-	for(iter = registeredComponents.begin(); iter != registeredComponents.end(); iter++)
+	for (int i = 1; i <= 10; i++)
 	{
-		//get DrawComponent
-		temp = (*iter);
+		for(iter = registeredComponents[i].begin(); iter != registeredComponents[i].end(); iter++)
+		{
+			//get DrawComponent
+			temp = (*iter);
 
-		//send to screen
-		targetWindow->draw(*(temp->getSprite()));
+			//send to screen
+			targetWindow->draw(*(temp->getSprite()));
+		}
 	}
 }
 

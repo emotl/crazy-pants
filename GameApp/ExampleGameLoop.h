@@ -26,7 +26,7 @@ public:
 private:
 
 	sf::Clock clock;
-	Fish* fish;
+	Fish* fish[10];
 	DrawController* Drawer;
 
 };

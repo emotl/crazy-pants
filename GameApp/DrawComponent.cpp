@@ -23,6 +23,7 @@ void DrawComponent::setupBaseData()
 	linearMovement.x = 0;
 	linearMovement.y = 0;
 	angularMovement = 0;
+	zDepth = 1;
 }
 
 DrawComponent::~DrawComponent(void)
@@ -80,6 +81,7 @@ void DrawComponent::teleport(float x, float y)
 
 void DrawComponent::rotateTo(float degrees)
 {
+	angle = degrees;
 	drawSprite->setRotation(degrees);
 }
 
@@ -126,4 +128,13 @@ float DrawComponent::getRotation()
 void DrawComponent::setScale(float x, float y)
 {
 	drawSprite->setScale(x,y);
+}
+
+int DrawComponent::getZDepth()
+{
+	return zDepth;
+}
+void DrawComponent::setZdepth(int depth)
+{
+	zDepth = depth;
 }

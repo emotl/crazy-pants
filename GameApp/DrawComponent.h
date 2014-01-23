@@ -40,6 +40,10 @@ public:
 
 	sf::Vector2f getPosition();
 	float getRotation();
+
+	//Controller asks for this for draw order, from 1 to 10, where 1 is under everything.  numbers are normalized from 1 to 10
+	int getZDepth();
+	void setZdepth(int depth);
 	
 	int magicNumber() override
 	{return magicNum;}
@@ -50,6 +54,8 @@ private:
 	float angularMovement;
 	float angle;
 	float angleChange;
+
+	int zDepth;
 
 	void setupBaseData();
 

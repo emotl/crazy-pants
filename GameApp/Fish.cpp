@@ -7,8 +7,8 @@ sf::Texture* Fish::fishTexture = NULL;
 Fish::Fish(void)
 {
 	initialize();
-	SetLocation((float)(rand() % 800), (float)( rand()% 600), (float)(rand() % 360));
-
+	float startAngle =  (float)(rand() % 360);
+	SetLocation((float)(rand() % 800), (float)( rand()% 600), startAngle);
 }
 
 
@@ -43,8 +43,8 @@ void Fish::initialize()
 {
 	addDrawComponent();
 
-	SetSpeed(75);
-	secondsToChangeDir = 2;
+	SetSpeed(30);
+	secondsToChangeDir = 4;
 	SetTurnSpeed(8);
 	RotationSpeed = 8;
 
@@ -68,6 +68,7 @@ void Fish::addDrawComponent()
 
 	drawComp->setOrigin(fishTexture->getSize().x/2, fishTexture->getSize().y/2);
 	drawComp->setScale(.75,.75);
+	drawComp->setZdepth(2);
 }
 
 void Fish::update(sf::Time deltaTime)
@@ -92,6 +93,12 @@ void Fish::update(sf::Time deltaTime)
 	{
 		drawComp->rotateTo(drawComp->getRotation() + 180);
 		flipped = true;
+	}
+	if((drawComp->getPosition().y > downBoundry + 500 || drawComp->getPosition().y < 0 - 500) ||
+		(drawComp->getPosition().y > downBoundry + 500 || drawComp->getPosition().y < 0 - 500) )
+	{
+		drawComp->teleport(-30,-30);
+		drawComp->rotateTo(-45);
 	}
 
 	sf::Vector2f fishPosition = drawComp->getPosition(); 

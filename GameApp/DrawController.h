@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list>
+#include <array>
 #include "controller.h"
 #include "DrawComponent.h"
 
@@ -24,7 +25,7 @@ public:
 
 private:
 	DrawController(sf::RenderWindow* target);
-	list<DrawComponent*> registeredComponents;
+	array<list<DrawComponent*>,11> registeredComponents;
 
 	sf::RenderWindow* targetWindow;
 

@@ -12,19 +12,31 @@ ExampleGameLoop::ExampleGameLoop(void):GameState()
 ExampleGameLoop::~ExampleGameLoop(void)
 {
 	delete Drawer;
+	for (int i = 0; i < 10; i++)
+		delete fish[i];
 }
 
 
 void ExampleGameLoop::gameLoop(sf::Time deltaTime)
 {
-	fish->update(deltaTime);
+	for (int i = 0; i < 10; i++)
+		fish[i]->update(deltaTime);
 
 }
 	
 //startInformation
 void ExampleGameLoop::initialize(sf::SoundBuffer* soundTarget)
 {
-	fish = new Fish(60,60, 0); 
+	for (int i = 0; i < 10; i++)
+		fish[i] = new Fish(); 
+
+	//example on how to live composite a object
+	GameObject lake;
+	sf::Texture* lakeImage = new sf::Texture();
+	lakeImage->loadFromFile("Assets/pondBG.png");
+	DrawComponent* lakeDisplay = new DrawComponent(lakeImage);
+	lakeDisplay->setScale(2,2);
+	lake.parts.push_front(lakeDisplay);
 	
 	srand(time(NULL));
 }
@@ -33,8 +45,9 @@ void ExampleGameLoop::initialize(sf::SoundBuffer* soundTarget)
 void ExampleGameLoop::drawLoop(sf::RenderWindow* drawTarget, sf::Time deltaTime)
 {
 	drawTarget->clear(sf::Color::Blue);
-
-	fish->setPoolSize(drawTarget->getSize().x, drawTarget->getSize().y);
+	
+	for (int i = 0; i < 10; i++)
+		fish[i]->setPoolSize(drawTarget->getSize().x, drawTarget->getSize().y);
 
 	Drawer = DrawController::getInstance(drawTarget);
 	Drawer->update(deltaTime);
