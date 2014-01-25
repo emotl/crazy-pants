@@ -138,3 +138,10 @@ void DrawComponent::setZdepth(int depth)
 {
 	zDepth = depth;
 }
+
+void addAnimation(string name, sf::RectangleShape startTile, float endPosX, bool looping)
+{}
+void playAnimation(string animName)
+{}
+void pause()
+{}

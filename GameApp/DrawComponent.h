@@ -4,6 +4,8 @@
 
 #define PI 3.14159265
 
+struct Animation;
+
 class DrawController;
 
 class DrawComponent :
@@ -38,6 +40,10 @@ public:
 	void setOrigin(float x, float y);
 	void setScale(float x, float y);
 
+	void addAnimation(string name, sf::RectangleShape startTile, float endPosX, bool looping);
+	void playAnimation(string animName);
+	void pause();
+
 	sf::Vector2f getPosition();
 	float getRotation();
 
@@ -64,3 +70,9 @@ private:
 
 };
 
+struct Animation
+{
+	sf::RectangleShape start;
+	float endpos;
+	bool looping;
+};

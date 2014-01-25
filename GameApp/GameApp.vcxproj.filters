@@ -101,12 +101,6 @@
     <ClCompile Include="DrawController.cpp">
       <Filter>Source Files\Helpers\PremadeComponents</Filter>
     </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files\Helpers\PremadeComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Controller.cpp">
-      <Filter>Source Files\Helpers\PremadeComponents</Filter>
-    </ClCompile>
     <ClCompile Include="ComponentEntityBridge.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
@@ -117,6 +111,12 @@
       <Filter>Source Files\Example</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
