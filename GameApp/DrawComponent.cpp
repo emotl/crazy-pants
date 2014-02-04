@@ -2,14 +2,14 @@
 #include "DrawComponent.h"
 
 
-DrawComponent::DrawComponent(void)
+DrawComponent::DrawComponent(void):animSet()
 {
 	drawSprite = new sf::Sprite();
 	setupBaseData();
 	registerToController();
 }
 
-DrawComponent::DrawComponent(sf::Texture* texture)
+DrawComponent::DrawComponent(sf::Texture* texture):animSet()
 {
 	drawSprite = new sf::Sprite(*texture);
 	setupBaseData();
@@ -24,6 +24,8 @@ void DrawComponent::setupBaseData()
 	linearMovement.y = 0;
 	angularMovement = 0;
 	zDepth = 1;
+
+	currentFrame.setPosition(0,0);
 }
 
 DrawComponent::~DrawComponent(void)

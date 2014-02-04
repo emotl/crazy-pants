@@ -1,6 +1,7 @@
 #pragma once
 #include "component.h"
 #include "ComponentEntityBridge.h"
+#include <map>
 
 #define PI 3.14159265
 
@@ -67,6 +68,8 @@ private:
 
 	void registerToController() override;
 
+	map<string, Animation> animSet;
+	sf::RectangleShape currentFrame;
 
 };
 
