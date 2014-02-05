@@ -23,8 +23,11 @@ void DrawComponent::setupBaseData()
 	if(drawSprite->getTexture() != NULL)
 	{
 		sf::Vector2u textureSize = drawSprite->getTexture()->getSize();
-		animSet.insert(pair<string,Animation>("default", Animation(sf::IntRect(0,0, textureSize.x,textureSize.y), false, 1)));
+		animSet["default"]  = Animation(sf::IntRect(0,0, textureSize.x,textureSize.y), false, 1, 0);
 	}
+
+	playAnimation("default");
+	playing = false;
 
 }
 
@@ -48,6 +51,7 @@ void DrawComponent::registerToController()
 //basic "do work" function, called by controller
 void DrawComponent::update(sf::Time deltaTime)
 {
+	//move position work
 	float speedPerFrame = ((float)deltaTime.asMicroseconds())/1000000.0;
 
 	float cosValue = cos(angle * (PI/180.0));
@@ -64,6 +68,8 @@ void DrawComponent::update(sf::Time deltaTime)
 	float xMov = drawSprite->getPosition().x + linearMovement.x * speedPerFrame;
 	float yMov = drawSprite->getPosition().y + linearMovement.y * speedPerFrame;
 	drawSprite->setPosition(xMov, yMov);
+
+	//Frame position work
 }
 
 sf::Sprite* DrawComponent::getSprite()
@@ -141,13 +147,24 @@ void DrawComponent::setZdepth(int depth)
 	zDepth = depth;
 }
 
-void DrawComponent::addAnimation(string name, sf::IntRect startTile, int endFrame, bool looping)
+void DrawComponent::addAnimation(string name, sf::IntRect startTile, int endFrame, bool looping, float FPS)
 {
-	animSet.insert(pair<string,Animation>("default", Animation(startTile, looping, endFrame)));
+	animSet[name] = Animation(startTile, looping, endFrame, FPS);
 }
 
 void DrawComponent::playAnimation(string animName)
 {
+	playing = true;
+	
+	Animation current = animSet[animName];
+	maxFrame = current.frameCount;
+	looping = current.looping;
+	fps = current.fps;
+
+	currentAnimPos = current.start;
+	currentAnimPos.left = 0;
 }
 void DrawComponent::pause()
-{}
+{
+	playing = false;
+}

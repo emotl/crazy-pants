@@ -40,7 +40,7 @@ public:
 	void setOrigin(float x, float y);
 	void setScale(float x, float y);
 
-	void addAnimation(string name, sf::IntRect startTile, float endPosX, bool looping);
+	void addAnimation(string name, sf::IntRect startTile, int endFrame, bool looping, float FPS);
 	void playAnimation(string animName);
 	void pause();
 
@@ -57,6 +57,7 @@ public:
 private:
 	sf::Sprite* drawSprite;
 	sf::Vector2f linearMovement;
+	sf::IntRect currentAnimPos;
 	float angularMovement;
 	float angle;
 	float angleChange;
@@ -70,6 +71,11 @@ private:
 	map<string, Animation> animSet;
 	sf::RectangleShape currentFrame;
 
+	bool playing;
+	int maxFrame;
+	bool looping;
+	float fps;
+
 };
 
 struct Animation
@@ -77,12 +83,14 @@ struct Animation
 	sf::IntRect start;
 	bool looping;
 	int frameCount;
+	float fps;
 	
-	Animation(sf::IntRect rect, bool loop, int frames)
+	Animation(sf::IntRect rect, bool loop, int frames, float FPS)
 	{
 		start = rect;
 		looping = loop;
 		frameCount  = frames;
+		fps = FPS;
 	};
 	
 
