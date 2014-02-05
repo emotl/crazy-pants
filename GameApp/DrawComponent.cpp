@@ -2,12 +2,6 @@
 #include "DrawComponent.h"
 
 
-DrawComponent::DrawComponent(void):animSet()
-{
-	drawSprite = new sf::Sprite();
-	setupBaseData();
-	registerToController();
-}
 
 DrawComponent::DrawComponent(sf::Texture* texture):animSet()
 {
@@ -26,6 +20,12 @@ void DrawComponent::setupBaseData()
 	zDepth = 1;
 
 	currentFrame.setPosition(0,0);
+	if(drawSprite->getTexture() != NULL)
+	{
+		sf::Vector2u textureSize = drawSprite->getTexture()->getSize();
+		animSet.insert(pair<string,Animation>("default", Animation(sf::IntRect(0,0, textureSize.x,textureSize.y), false, 1)));
+	}
+
 }
 
 DrawComponent::~DrawComponent(void)
@@ -141,9 +141,13 @@ void DrawComponent::setZdepth(int depth)
 	zDepth = depth;
 }
 
-void addAnimation(string name, sf::RectangleShape startTile, float endPosX, bool looping)
-{}
-void playAnimation(string animName)
-{}
-void pause()
+void DrawComponent::addAnimation(string name, sf::IntRect startTile, int endFrame, bool looping)
+{
+	animSet.insert(pair<string,Animation>("default", Animation(startTile, looping, endFrame)));
+}
+
+void DrawComponent::playAnimation(string animName)
+{
+}
+void DrawComponent::pause()
 {}

@@ -18,7 +18,6 @@ public:
 
 	DrawComponent(sf::Texture* texture);
 	DrawComponent(const DrawComponent& original);
-	DrawComponent(void);
 	~DrawComponent(void);
 
 	sf::Texture* sourceTexture;
@@ -41,7 +40,7 @@ public:
 	void setOrigin(float x, float y);
 	void setScale(float x, float y);
 
-	void addAnimation(string name, sf::RectangleShape startTile, float endPosX, bool looping);
+	void addAnimation(string name, sf::IntRect startTile, float endPosX, bool looping);
 	void playAnimation(string animName);
 	void pause();
 
@@ -75,7 +74,16 @@ private:
 
 struct Animation
 {
-	sf::RectangleShape start;
-	float endpos;
+	sf::IntRect start;
 	bool looping;
+	int frameCount;
+	
+	Animation(sf::IntRect rect, bool loop, int frames)
+	{
+		start = rect;
+		looping = loop;
+		frameCount  = frames;
+	};
+	
+
 };
