@@ -69,12 +69,15 @@ private:
 	void registerToController() override;
 
 	map<string, Animation> animSet;
-	sf::RectangleShape currentFrame;
 
 	bool playing;
 	int maxFrame;
 	bool looping;
 	float fps;
+
+	int millisecondsSinceFrameChange;
+
+	void advanceFrame(sf::Time deltaTime);
 
 };
 
@@ -85,6 +88,14 @@ struct Animation
 	int frameCount;
 	float fps;
 	
+	Animation()
+	{
+		start = sf::IntRect();
+		looping = false;
+		frameCount = 0;
+		fps = 0;
+	}
+
 	Animation(sf::IntRect rect, bool loop, int frames, float FPS)
 	{
 		start = rect;

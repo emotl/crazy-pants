@@ -19,15 +19,20 @@ void DrawComponent::setupBaseData()
 	angularMovement = 0;
 	zDepth = 1;
 
-	currentFrame.setPosition(0,0);
 	if(drawSprite->getTexture() != NULL)
 	{
 		sf::Vector2u textureSize = drawSprite->getTexture()->getSize();
 		animSet["default"]  = Animation(sf::IntRect(0,0, textureSize.x,textureSize.y), false, 1, 0);
+		currentAnimPos.height = textureSize.y;
+		currentAnimPos.width = textureSize.x;
 	}
 
 	playAnimation("default");
 	playing = false;
+
+	millisecondsSinceFrameChange = 0;
+	currentAnimPos.left = 0;
+	currentAnimPos.top = 0;
 
 }
 
@@ -52,10 +57,10 @@ void DrawComponent::registerToController()
 void DrawComponent::update(sf::Time deltaTime)
 {
 	//move position work
-	float speedPerFrame = ((float)deltaTime.asMicroseconds())/1000000.0;
+	float speedPerFrame = ((float)deltaTime.asMicroseconds())/1000000.0f;
 
-	float cosValue = cos(angle * (PI/180.0));
-	float sinValue = sin(angle * (PI/180.0));
+	float cosValue = cos(angle * (PI/180.0f));
+	float sinValue = sin(angle * (PI/180.0f));
 	if(angularMovement > .01)
 	{
 		linearMovement.x = angularMovement * cosValue;
@@ -70,7 +75,30 @@ void DrawComponent::update(sf::Time deltaTime)
 	drawSprite->setPosition(xMov, yMov);
 
 	//Frame position work
+	if(playing)
+	{
+		advanceFrame(deltaTime);
+	}
+	drawSprite->setTextureRect(currentAnimPos);
 }
+
+void DrawComponent::advanceFrame(sf::Time deltaTime)
+{
+	millisecondsSinceFrameChange += deltaTime.asMilliseconds();
+	if(millisecondsSinceFrameChange >= (int)(1/fps * 1000))
+	{
+		millisecondsSinceFrameChange = 0;
+
+		//advance
+		currentAnimPos.left += currentAnimPos.width;
+
+		if(currentAnimPos.left > maxFrame * currentAnimPos.width)
+		{
+			currentAnimPos.left = 0;
+		}
+	}
+}
+
 
 sf::Sprite* DrawComponent::getSprite()
 {
