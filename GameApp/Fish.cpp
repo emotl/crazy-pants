@@ -59,16 +59,20 @@ void Fish::addDrawComponent()
 	if(fishTexture == NULL)
 	{
 		fishTexture = new sf::Texture();
-		if (!fishTexture->loadFromFile("Assets/testFish.png"))
+		if (!fishTexture->loadFromFile("Assets/fishy.png"))
 			std::cerr<<"Failed to load fish";
 	}
 
 	drawComp = new DrawComponent(fishTexture);
 	parts.push_front(drawComp);
 
-	drawComp->setOrigin(fishTexture->getSize().x/2, fishTexture->getSize().y/2);
-	drawComp->setScale(.75,.75);
+	drawComp->setOrigin(fishTexture->getSize().x/2, fishTexture->getSize().y/12);
+	drawComp->setScale(1.5,1.5);
 	drawComp->setZdepth(2);
+	drawComp->rotationOffset = 90;
+
+	drawComp->addAnimation("main", sf::IntRect(0,0,64,64), 5, true, 3);
+	drawComp->playAnimation("main");
 }
 
 void Fish::update(sf::Time deltaTime)

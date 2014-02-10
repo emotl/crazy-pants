@@ -34,6 +34,8 @@ void DrawComponent::setupBaseData()
 	currentAnimPos.left = 0;
 	currentAnimPos.top = 0;
 
+	rotationOffset = 0;
+
 }
 
 DrawComponent::~DrawComponent(void)
@@ -68,7 +70,7 @@ void DrawComponent::update(sf::Time deltaTime)
 	}
 
 	angle += angleChange * speedPerFrame;
-	drawSprite->setRotation(angle);
+	drawSprite->setRotation(angle + rotationOffset);
 
 	float xMov = drawSprite->getPosition().x + linearMovement.x * speedPerFrame;
 	float yMov = drawSprite->getPosition().y + linearMovement.y * speedPerFrame;
@@ -84,8 +86,8 @@ void DrawComponent::update(sf::Time deltaTime)
 
 void DrawComponent::advanceFrame(sf::Time deltaTime)
 {
-	millisecondsSinceFrameChange += deltaTime.asMilliseconds();
-	if(millisecondsSinceFrameChange >= (int)(1/fps * 1000))
+	millisecondsSinceFrameChange += deltaTime.asMicroseconds()/1000000.0;
+	if(millisecondsSinceFrameChange >= (1.0/fps))
 	{
 		millisecondsSinceFrameChange = 0;
 
@@ -191,6 +193,8 @@ void DrawComponent::playAnimation(string animName)
 
 	currentAnimPos = current.start;
 	currentAnimPos.left = 0;
+
+	drawSprite->setOrigin(current.start.width/2, current.start.height/2);
 }
 void DrawComponent::pause()
 {

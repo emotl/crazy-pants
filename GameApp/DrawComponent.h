@@ -47,6 +47,8 @@ public:
 	sf::Vector2f getPosition();
 	float getRotation();
 
+	float rotationOffset;
+
 	//Controller asks for this for draw order, from 1 to 10, where 1 is under everything.  numbers are normalized from 1 to 10
 	int getZDepth();
 	void setZdepth(int depth);
@@ -75,7 +77,7 @@ private:
 	bool looping;
 	float fps;
 
-	int millisecondsSinceFrameChange;
+	float millisecondsSinceFrameChange;
 
 	void advanceFrame(sf::Time deltaTime);
 
