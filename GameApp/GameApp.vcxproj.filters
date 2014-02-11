@@ -19,6 +19,21 @@
     <Filter Include="Source Files\Helpers">
       <UniqueIdentifier>{1ab939a8-5916-45a3-9b09-38405582dcd5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Example">
+      <UniqueIdentifier>{8653c21d-f10f-413a-a54b-2827e57f410e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers\PremadeComponents">
+      <UniqueIdentifier>{10250181-5052-4f11-bef1-8b1fa96ce265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers\PremadeComponents\Draw">
+      <UniqueIdentifier>{4a5646de-5c04-419d-8a1c-a0b22a221491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helpers\PremadeComponents">
+      <UniqueIdentifier>{b3fa3291-4b7c-45c1-a372-3dc8362f1ed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Example">
+      <UniqueIdentifier>{b0828919-265d-4016-809e-26d3bed2a1da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,29 +54,29 @@
     <ClInclude Include="GameState.h">
       <Filter>Header Files\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="ExampleGameLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ComponentEntityBridge.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ExampleGameLoop.h">
+      <Filter>Header Files\Example</Filter>
     </ClInclude>
     <ClInclude Include="Fish.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Example</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawController.h">
+      <Filter>Header Files\Helpers\PremadeComponents\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawComponent.h">
+      <Filter>Header Files\Helpers\PremadeComponents\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentEntityBridge.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,29 +95,29 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="ExampleGameLoop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DrawComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Helpers\PremadeComponents</Filter>
     </ClCompile>
     <ClCompile Include="DrawController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Helpers\PremadeComponents</Filter>
     </ClCompile>
     <ClCompile Include="ComponentEntityBridge.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Fish.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Example</Filter>
+    </ClCompile>
+    <ClCompile Include="ExampleGameLoop.cpp">
+      <Filter>Source Files\Example</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

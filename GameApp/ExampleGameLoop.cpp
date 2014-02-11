@@ -37,6 +37,7 @@ void ExampleGameLoop::initialize(sf::SoundBuffer* soundTarget)
 	DrawComponent* lakeDisplay = new DrawComponent(lakeImage);
 	lakeDisplay->setScale(2,2);
 	lake.parts.push_front(lakeDisplay);
+	lakeDisplay->setOrigin(0,0);
 	
 	srand(time(NULL));
 }

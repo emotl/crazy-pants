@@ -2,14 +2,8 @@
 #include "DrawComponent.h"
 
 
-DrawComponent::DrawComponent(void)
-{
-	drawSprite = new sf::Sprite();
-	setupBaseData();
-	registerToController();
-}
 
-DrawComponent::DrawComponent(sf::Texture* texture)
+DrawComponent::DrawComponent(sf::Texture* texture):animSet()
 {
 	drawSprite = new sf::Sprite(*texture);
 	setupBaseData();
@@ -24,6 +18,24 @@ void DrawComponent::setupBaseData()
 	linearMovement.y = 0;
 	angularMovement = 0;
 	zDepth = 1;
+
+	if(drawSprite->getTexture() != NULL)
+	{
+		sf::Vector2u textureSize = drawSprite->getTexture()->getSize();
+		animSet["default"]  = Animation(sf::IntRect(0,0, textureSize.x,textureSize.y), false, 1, 0);
+		currentAnimPos.height = textureSize.y;
+		currentAnimPos.width = textureSize.x;
+	}
+
+	playAnimation("default");
+	playing = false;
+
+	millisecondsSinceFrameChange = 0;
+	currentAnimPos.left = 0;
+	currentAnimPos.top = 0;
+
+	rotationOffset = 0;
+
 }
 
 DrawComponent::~DrawComponent(void)
@@ -46,10 +58,11 @@ void DrawComponent::registerToController()
 //basic "do work" function, called by controller
 void DrawComponent::update(sf::Time deltaTime)
 {
-	float speedPerFrame = ((float)deltaTime.asMicroseconds())/1000000.0;
+	//move position work
+	float speedPerFrame = ((float)deltaTime.asMicroseconds())/1000000.0f;
 
-	float cosValue = cos(angle * (PI/180.0));
-	float sinValue = sin(angle * (PI/180.0));
+	float cosValue = cos(angle * (PI/180.0f));
+	float sinValue = sin(angle * (PI/180.0f));
 	if(angularMovement > .01)
 	{
 		linearMovement.x = angularMovement * cosValue;
@@ -57,12 +70,37 @@ void DrawComponent::update(sf::Time deltaTime)
 	}
 
 	angle += angleChange * speedPerFrame;
-	drawSprite->setRotation(angle);
+	drawSprite->setRotation(angle + rotationOffset);
 
 	float xMov = drawSprite->getPosition().x + linearMovement.x * speedPerFrame;
 	float yMov = drawSprite->getPosition().y + linearMovement.y * speedPerFrame;
 	drawSprite->setPosition(xMov, yMov);
+
+	//Frame position work
+	if(playing)
+	{
+		advanceFrame(deltaTime);
+	}
+	drawSprite->setTextureRect(currentAnimPos);
 }
+
+void DrawComponent::advanceFrame(sf::Time deltaTime)
+{
+	millisecondsSinceFrameChange += deltaTime.asMicroseconds()/1000000.0;
+	if(millisecondsSinceFrameChange >= (1.0/fps))
+	{
+		millisecondsSinceFrameChange = 0;
+
+		//advance
+		currentAnimPos.left += currentAnimPos.width;
+
+		if(currentAnimPos.left > maxFrame * currentAnimPos.width)
+		{
+			currentAnimPos.left = 0;
+		}
+	}
+}
+
 
 sf::Sprite* DrawComponent::getSprite()
 {
@@ -137,4 +175,28 @@ int DrawComponent::getZDepth()
 void DrawComponent::setZdepth(int depth)
 {
 	zDepth = depth;
+}
+
+void DrawComponent::addAnimation(string name, sf::IntRect startTile, int endFrame, bool looping, float FPS)
+{
+	animSet[name] = Animation(startTile, looping, endFrame, FPS);
+}
+
+void DrawComponent::playAnimation(string animName)
+{
+	playing = true;
+	
+	Animation current = animSet[animName];
+	maxFrame = current.frameCount;
+	looping = current.looping;
+	fps = current.fps;
+
+	currentAnimPos = current.start;
+	currentAnimPos.left = 0;
+
+	drawSprite->setOrigin(current.start.width/2, current.start.height/2);
+}
+void DrawComponent::pause()
+{
+	playing = false;
 }

@@ -1,8 +1,11 @@
 #pragma once
 #include "component.h"
 #include "ComponentEntityBridge.h"
+#include <map>
 
 #define PI 3.14159265
+
+struct Animation;
 
 class DrawController;
 
@@ -15,7 +18,6 @@ public:
 
 	DrawComponent(sf::Texture* texture);
 	DrawComponent(const DrawComponent& original);
-	DrawComponent(void);
 	~DrawComponent(void);
 
 	sf::Texture* sourceTexture;
@@ -38,8 +40,14 @@ public:
 	void setOrigin(float x, float y);
 	void setScale(float x, float y);
 
+	void addAnimation(string name, sf::IntRect startTile, int endFrame, bool looping, float FPS);
+	void playAnimation(string animName);
+	void pause();
+
 	sf::Vector2f getPosition();
 	float getRotation();
+
+	float rotationOffset;
 
 	//Controller asks for this for draw order, from 1 to 10, where 1 is under everything.  numbers are normalized from 1 to 10
 	int getZDepth();
@@ -51,6 +59,7 @@ public:
 private:
 	sf::Sprite* drawSprite;
 	sf::Vector2f linearMovement;
+	sf::IntRect currentAnimPos;
 	float angularMovement;
 	float angle;
 	float angleChange;
@@ -61,6 +70,41 @@ private:
 
 	void registerToController() override;
 
+	map<string, Animation> animSet;
+
+	bool playing;
+	int maxFrame;
+	bool looping;
+	float fps;
+
+	float millisecondsSinceFrameChange;
+
+	void advanceFrame(sf::Time deltaTime);
 
 };
 
+struct Animation
+{
+	sf::IntRect start;
+	bool looping;
+	int frameCount;
+	float fps;
+	
+	Animation()
+	{
+		start = sf::IntRect();
+		looping = false;
+		frameCount = 0;
+		fps = 0;
+	}
+
+	Animation(sf::IntRect rect, bool loop, int frames, float FPS)
+	{
+		start = rect;
+		looping = loop;
+		frameCount  = frames;
+		fps = FPS;
+	};
+	
+
+};
